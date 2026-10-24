@@ -43,6 +43,7 @@
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth; background:#01020c; min-height:100%;}
+  body{ min-height:100vh; min-height:100dvh; }
   body{
     background:
       radial-gradient(ellipse 90% 60% at 50% 8%, rgba(20,50,190,0.55), transparent 60%),
@@ -70,9 +71,6 @@
   /* interactive brush layer */
   .brush-field{
     position:fixed; top:0; left:0; right:0; height:100vh; height:100lvh; z-index:0; overflow:hidden; pointer-events:none;
-    /* fade the colour out at the very bottom so the mobile browser toolbar sits on dark, not on a teal brush */
-    -webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 170px),transparent 100%);
-    mask-image:linear-gradient(to bottom,#000 calc(100% - 170px),transparent 100%);
   }
   .hero-glow{
     position:absolute; top:0; left:0; z-index:0;
@@ -146,7 +144,7 @@
 
   /* scroll indicator: green-white pill with a gradient ring that draws itself as you scroll */
   .scroll-fab{
-    position:fixed; right:58px; bottom:calc(56px + env(safe-area-inset-bottom, 0px)); z-index:150;
+    position:fixed; right:24px; bottom:calc(150px + env(safe-area-inset-bottom, 0px)); z-index:150;
     width:50px; height:50px; padding:0; border:0; border-radius:50%; cursor:pointer;
     display:grid; place-items:center; -webkit-tap-highlight-color:transparent;
     background:linear-gradient(135deg,#97FF64 0%,#ffffff 60%);
@@ -161,7 +159,7 @@
   .scroll-ring{ position:absolute; inset:-6px; width:calc(100% + 12px); height:calc(100% + 12px); transform:rotate(-90deg); pointer-events:none; opacity:0; transition:opacity .4s var(--ease); overflow:visible; }
   .scroll-ring circle{ fill:none; stroke:url(#scrollRingGrad); stroke-width:3; stroke-linecap:round; filter:drop-shadow(0 0 4px rgba(151,255,100,.55)); }
   .scroll-arrow{ width:20px; height:20px; color:#0B3B1E; will-change:transform; }
-  @media(max-width:760px){ .scroll-fab{ width:46px; height:46px; right:46px; bottom:calc(88px + env(safe-area-inset-bottom, 0px)); } .scroll-arrow{ width:18px; height:18px; } }
+  @media(max-width:760px){ .scroll-fab{ width:46px; height:46px; right:46px; bottom:calc(38px + env(safe-area-inset-bottom, 0px)); } .scroll-arrow{ width:18px; height:18px; } }
 
   /* nav */
   #nav-wrap{
@@ -1547,7 +1545,7 @@
     if(ic && f) f.src = ic.href;
     // desktop: every design of a client sits on ONE row, all with the same height
     document.querySelectorAll('.client-gallery .client-item').forEach(function(img){
-      function set(){ if(img.naturalWidth && img.naturalHeight) img.style.flex = (img.naturalWidth / img.naturalHeight) + ' 1 0%'; }
+      function set(){ img.style.flex = 'none'; }
       if(img.complete) set(); else img.addEventListener('load', set);
     });
   })();
