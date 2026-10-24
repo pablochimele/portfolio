@@ -42,7 +42,7 @@
     --spring: cubic-bezier(.34,1.56,.64,1);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth; background:#01020c; min-height:100%;}
+  html{scroll-behavior:smooth; min-height:100%;}
   body{ min-height:100vh; min-height:100dvh; }
   body{
     background:
@@ -70,7 +70,7 @@
 
   /* interactive brush layer */
   .brush-field{
-    position:fixed; top:0; left:0; right:0; height:100vh; height:100lvh; z-index:0; overflow:hidden; pointer-events:none;
+    position:fixed; top:0; left:0; right:0; bottom:calc(-1 * env(safe-area-inset-bottom, 0px)); min-height:100lvh; z-index:0; overflow:hidden; pointer-events:none;
   }
   .hero-glow{
     position:absolute; top:0; left:0; z-index:0;
@@ -144,7 +144,7 @@
 
   /* scroll indicator: green-white pill with a gradient ring that draws itself as you scroll */
   .scroll-fab{
-    position:fixed; right:24px; bottom:calc(150px + env(safe-area-inset-bottom, 0px)); z-index:150;
+    position:fixed; right:194px; bottom:calc(150px + env(safe-area-inset-bottom, 0px)); z-index:150;
     width:50px; height:50px; padding:0; border:0; border-radius:50%; cursor:pointer;
     display:grid; place-items:center; -webkit-tap-highlight-color:transparent;
     background:linear-gradient(135deg,#97FF64 0%,#ffffff 60%);
